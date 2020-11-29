@@ -26,7 +26,7 @@ def BuscafeiraPorId(cod):
     consultar = FeirasLivres.query.filter(FeirasLivres.id == cod)
     feiras = []
     
-    if consultar is None:
+    if not consultar:
         return jsonify({'Message': "Não Existe Registros"}), 404
 
 
