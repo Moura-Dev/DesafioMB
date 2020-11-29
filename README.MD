@@ -25,12 +25,12 @@ flask db migrate
 flask db upgrade
 
 
-#Executando Script Para Inserir Dados no Banco de Dados
+# Executando Script Para Inserir Dados no Banco de Dados
 
 python3 script/rotina.py
  
 
-#Executando teste 
+# Executando teste 
 python -m unittest 
 
 
@@ -107,11 +107,13 @@ modelo de url = feira/1/
 
 
 
-#Em caso de Sucesso retornará:
+
+# Em caso de Sucesso retornará:
 
 {
     "Message": "Feira Atualizada com Sucesso!!"
 }
+
 
 
 
@@ -125,7 +127,7 @@ modelo de url = feira/1/
 
 
 
-#Em caso de Sucesso retornará:
+# Em caso de Sucesso retornará:
 
 {
     "Message": "Feira Deletada com Sucesso!!"
