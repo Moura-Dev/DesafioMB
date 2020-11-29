@@ -7,7 +7,9 @@ from sqlalchemy import text
 
 Base = declarative_base()
 
+
 class FeirasLivres(Base):
+
 
     __tablename__ = "feiras_livres"
     id = Column('id',Integer, primary_key=True)
@@ -28,70 +30,55 @@ class FeirasLivres(Base):
     bairro = Column('bairro',String)
     referencia = Column('referencia',String)
 
+
 engine = create_engine('mysql+mysqldb://moura:itnisan19@localhost/api')
 Session = sessionmaker(bind=engine)
 Base.metadata.create_all(bind=engine)
 session = Session()
-
-
 feiraslivres = FeirasLivres()
-feiraslivres.id = 1000000
-feiraslivres.long_ = 119393
-feiraslivres.lat = 103939
-feiraslivres.setcens = 1919
-feiraslivres.areap = 19191
-feiraslivres.coddist = 55
-feiraslivres.distrito = "Sao paulo distrito"
-feiraslivres.codsubprefe = "subprefeitura"
-feiraslivres.subprefe = "55"
-feiraslivres.regiao5 = "333"
-feiraslivres.regiao8 = 111
-feiraslivres.registro = 193
-feiraslivres.logradouro = "rua anchieta"
-feiraslivres.numero = 210
-feiraslivres.bairro = "jardim dom bosco"
-feiraslivres.referencia = "transamerica"
 
-session.add(feiraslivres)
-session.commit()
+#def LerCsv():
+with open("data/DEINFO_AB_FEIRASLIVRES_2014.csv", "r") as data:
+    valores = []
+    contador = 0
+    lis = []
+    for line in data:
+        if contador > 0:
+            for item in line.strip().split(','):
+                if contador > 16:
+                    contador = 0
+                valores.append(item)
+            feiraslivres = FeirasLivres()
+            feiraslivres.long_ = valores[1]
+            feiraslivres.lat = valores[2]
+            feiraslivres.setcens = valores[3]
+            feiraslivres.areap = valores[4]
+            feiraslivres.coddist = valores[5]
+            feiraslivres.distrito = valores[6]
+            feiraslivres.codsubprefe = valores[7]
+            feiraslivres.subprefe = valores[8]
+            feiraslivres.regiao5 = valores[9]
+            feiraslivres.regiao8 = valores[10]
+            feiraslivres.nome_feira = valores[11]
+            feiraslivres.registro = valores[12]
+            feiraslivres.logradouro = valores[13]
+            feiraslivres.numero = valores[14]
+            feiraslivres.bairro = valores[15]
+            if len(valores) == 17:
+                feiraslivres.referencia = valores[16]
+            print(valores)
 
-session.close()
+            session.add(feiraslivres)
+            session.commit()
+            session.close()
+            
+
+            valores.clear()
+        contador += 1
 
 
-
-
-
-
-
-# feiras = ('id', 'long_', 'lat', 'setcens', 'areap', 'coddist', 'distrito', 'codsubprefe', 'subprefe','regiao5', 'regiao8', 'nome_feira', 'registro', 'logradouro', 'numero', 'bairro', 'referencia')
-
-# with open("data/DEINFO_AB_FEIRASLIVRES_2014.csv", "r") as data:
-#     valores = []
-#     contador = 0
-#     lis = []
-#     for line in data:
-#         for item in line.split(','):
-#             if contador > 16:
-#                 contador = 0
-#             valores.append(item)
-#              #FeirasLivres[contador]
-#             lis.append({feiras[contador] : item})
-#             contador += 1
-#         #session.add(lis)
-#         #session.commit()
-#             #print(item)
-#         print(lis)
-#         #session.add(newfeira)
-        
-
-#         #print(valores)
-#         valores.clear()
-
+#LerCsv()
 
 
 
         
-
-
-#ID,LONG,LAT,SETCENS,AREAP,CODDIST,DISTRITO,CODSUBPREF,SUBPREFE,REGIAO5,REGIAO8,NOME_FEIRA,REGISTRO,LOGRADOURO,NUMERO,BAIRRO,REFERENCIA
-#23,-46625498,-23501502,355030870000005,3550308005064,71,SANTANA,5,SANTANA-TUCURUVI,Norte,Norte 2,SANTANA,4015-0,RUA GABRIEL PIZZA,S/N,SANTANA,DR.ZUQUIM
