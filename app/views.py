@@ -3,6 +3,11 @@ from .models import FeirasLivres
 from . import db
 
 
+
+def hello():
+    return "Hello World"
+
+
 def BuscarFeira():
 
     consultar = FeirasLivres.query.all()
@@ -22,22 +27,23 @@ def BuscarFeira():
     return jsonify(feiras), 200
 
    
-def BuscafeiraPorId(cod):
-    consultar = FeirasLivres.query.filter(FeirasLivres.id == cod)
+def BuscarPorNomeFeira(cod):
+    # consultar = FeirasLivres.query.filter(FeirasLivres.id == cod)
+    consultar = FeirasLivres.query.filter(FeirasLivres.nome_feira.like({f"%{cod}%"})).all()
     feiras = []
-    
+
     if not consultar:
-        return jsonify({'Message': "Não Existe Registros"}), 404
+        return jsonify({'Message': "Não Existe Registros"}, consultar), 404
 
 
     for f in consultar:
 
-        feiras.append({'id': f.id, 'long_': f.long_, 'lat': f.lat,'setcens': f.setcens, 'areap': f.areap, 
+        feiras.append({'id': f.id, 'long': f.long_, 'lat': f.lat,'setcens': f.setcens, 'areap': f.areap,
         'coddist': f.coddist,'distrito': f.distrito, 'codsubprefe': f.codsubprefe, 'subprefe': f.subprefe,
         'regiao5': f.regiao5, 'regiao8': f.regiao8, 'nome_feira': f.nome_feira,'registro': f.registro,
         'logradouro': f.logradouro, 'numero': f.numero,'bairro': f.bairro, 'referencia': f.referencia})
 
-        return jsonify(feiras), 200
+    return jsonify(feiras), 200
 
 
 def DeletarFeira(cod):

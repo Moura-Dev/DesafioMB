@@ -7,7 +7,6 @@ db = SQLAlchemy()
 
 
 def create_app():
-
     app = Flask(__name__)
     file_handler = FileHandler('errorlog.txt')
     file_handler.setLevel(WARNING)
@@ -28,3 +27,7 @@ def create_app():
 
     
     return app
+
+
+if __name__ =='__main__':
+    create_app()
