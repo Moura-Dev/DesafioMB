@@ -5,9 +5,7 @@ from .views import (
     AtualizarFeira,
     AdicionarFeira,
 )
-from flask import Blueprint, jsonify, request
-from . import db
-from .models import FeirasLivres
+from flask import Blueprint, jsonify
 
 
 main = Blueprint("main", __name__)
