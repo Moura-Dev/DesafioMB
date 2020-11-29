@@ -37,47 +37,48 @@ Base.metadata.create_all(bind=engine)
 session = Session()
 feiraslivres = FeirasLivres()
 
-#def LerCsv():
-with open("data/DEINFO_AB_FEIRASLIVRES_2014.csv", "r") as data:
-    valores = []
-    contador = 0
-    lis = []
-    for line in data:
-        if contador > 0:
-            for item in line.strip().split(','):
-                if contador > 16:
-                    contador = 0
-                valores.append(item)
-            feiraslivres = FeirasLivres()
-            feiraslivres.long_ = valores[1]
-            feiraslivres.lat = valores[2]
-            feiraslivres.setcens = valores[3]
-            feiraslivres.areap = valores[4]
-            feiraslivres.coddist = valores[5]
-            feiraslivres.distrito = valores[6]
-            feiraslivres.codsubprefe = valores[7]
-            feiraslivres.subprefe = valores[8]
-            feiraslivres.regiao5 = valores[9]
-            feiraslivres.regiao8 = valores[10]
-            feiraslivres.nome_feira = valores[11]
-            feiraslivres.registro = valores[12]
-            feiraslivres.logradouro = valores[13]
-            feiraslivres.numero = valores[14]
-            feiraslivres.bairro = valores[15]
-            if len(valores) == 17:
-                feiraslivres.referencia = valores[16]
-            print(valores)
 
-            session.add(feiraslivres)
-            session.commit()
-            session.close()
-            
+def LerCsv():
+    with open("data/DEINFO_AB_FEIRASLIVRES_2014.csv", "r") as data:
+        valores = []
+        contador = 0
+        lis = []
+        for line in data:
+            if contador > 0:
+                for item in line.strip().split(','):
+                    if contador > 16:
+                        contador = 0
+                    valores.append(item)
+                feiraslivres = FeirasLivres()
+                feiraslivres.long_ = valores[1]
+                feiraslivres.lat = valores[2]
+                feiraslivres.setcens = valores[3]
+                feiraslivres.areap = valores[4]
+                feiraslivres.coddist = valores[5]
+                feiraslivres.distrito = valores[6]
+                feiraslivres.codsubprefe = valores[7]
+                feiraslivres.subprefe = valores[8]
+                feiraslivres.regiao5 = valores[9]
+                feiraslivres.regiao8 = valores[10]
+                feiraslivres.nome_feira = valores[11]
+                feiraslivres.registro = valores[12]
+                feiraslivres.logradouro = valores[13]
+                feiraslivres.numero = valores[14]
+                feiraslivres.bairro = valores[15]
+                if len(valores) == 17:
+                    feiraslivres.referencia = valores[16]
+                print(valores)
 
-            valores.clear()
-        contador += 1
+                session.add(feiraslivres)
+                session.commit()
+                session.close()
+                
+
+                valores.clear()
+            contador += 1
 
 
-#LerCsv()
+LerCsv()
 
 
 
