@@ -6,10 +6,10 @@ Desafio MercadoBitcoin :
 # Crie um virtualenv 
 python3 -m virtualenv venv
 
-# Ativar virtualenv
+# Ative virtualenv
 source /venv/bin/activate
 
-# Para usar o sistema
+# Dependencias para usar o sistema
 pip install -r requirements.txt
 
 # Exportar flask:
