@@ -1,7 +1,7 @@
 import sqlalchemy
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
-from sqlalchemy import create_engine,Column, Integer, String, ForeignKey
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
 from sqlalchemy import text
 
 
@@ -10,28 +10,27 @@ Base = declarative_base()
 
 class FeirasLivres(Base):
 
-
     __tablename__ = "feiras_livres"
-    id = Column('id',Integer, primary_key=True)
-    long_ = Column('long_',String)
-    lat = Column('lat',String)
-    setcens = Column('setcens',String)
-    areap = Column('areap',String)
-    coddist = Column('coddist',String)
-    distrito = Column('distrito',String)
-    codsubprefe = Column('codsubprefe',String)
-    subprefe = Column('subprefe',String)
-    regiao5 = Column('regiao5',String)
-    regiao8 = Column('regiao8',String)
-    nome_feira = Column('nome_feira',String)
-    registro = Column('registro',String)
-    logradouro = Column('logradouro',String)
-    numero = Column('numero',String)
-    bairro = Column('bairro',String)
-    referencia = Column('referencia',String)
+    id = Column("id", Integer, primary_key=True)
+    long_ = Column("long_", String)
+    lat = Column("lat", String)
+    setcens = Column("setcens", String)
+    areap = Column("areap", String)
+    coddist = Column("coddist", String)
+    distrito = Column("distrito", String)
+    codsubprefe = Column("codsubprefe", String)
+    subprefe = Column("subprefe", String)
+    regiao5 = Column("regiao5", String)
+    regiao8 = Column("regiao8", String)
+    nome_feira = Column("nome_feira", String)
+    registro = Column("registro", String)
+    logradouro = Column("logradouro", String)
+    numero = Column("numero", String)
+    bairro = Column("bairro", String)
+    referencia = Column("referencia", String)
 
 
-engine = create_engine('mysql+mysqldb://moura:itnisan19@localhost/api')
+engine = create_engine("mysql+mysqldb://moura:itnisan19@localhost/api")
 Session = sessionmaker(bind=engine)
 Base.metadata.create_all(bind=engine)
 session = Session()
@@ -45,7 +44,7 @@ def LerCsv():
         lis = []
         for line in data:
             if contador > 0:
-                for item in line.strip().split(','):
+                for item in line.strip().split(","):
                     if contador > 16:
                         contador = 0
                     valores.append(item)
@@ -72,14 +71,9 @@ def LerCsv():
                 session.add(feiraslivres)
                 session.commit()
                 session.close()
-                
 
                 valores.clear()
             contador += 1
 
 
 LerCsv()
-
-
-
-        

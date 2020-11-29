@@ -19,5 +19,3 @@ class FeirasLivres(db.Model):
     numero = db.Column(db.String(100))
     bairro = db.Column(db.String(100))
     referencia = db.Column(db.String(100))
-
-   

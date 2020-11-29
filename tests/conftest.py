@@ -3,6 +3,7 @@ import unittest
 
 app = create_app()
 
+
 class FlaskTeste(unittest.TestCase):
 
     FEIRA_OBJ = {
@@ -22,68 +23,59 @@ class FlaskTeste(unittest.TestCase):
         "regiao8": "Leste 1",
         "registro": "3048-1",
         "setcens": "355030859000173",
-        "subprefe": "PENHA"
+        "subprefe": "PENHA",
     }
 
     def test_index(self):
         tester = app.test_client(self)
-        response = tester.get('/')
+        response = tester.get("/")
         statuscode = response.status_code
         self.assertEqual(statuscode, 200)
-
 
     def test_status_code_get_feira(self):
         tester = app.test_client(self)
-        response = tester.get('/feira/')
+        response = tester.get("/feira/")
         statuscode = response.status_code
         self.assertEqual(statuscode, 200)
         self.assertEqual(response.content_type, "application/json")
 
-
     def test_content_type_Buscar_feira(self):
         tester = app.test_client(self)
-        response = tester.get('/feira/')
+        response = tester.get("/feira/")
         self.assertEqual(response.content_type, "application/json")
-
 
     def test_Url_que_nao_existe(self):
         tester = app.test_client(self)
-        response = tester.get('/URL_QUE_NAO_EXISTE')
+        response = tester.get("/URL_QUE_NAO_EXISTE")
         statuscode = response.status_code
         self.assertEqual(statuscode, 404)
 
-
     def test_Post_Criar_feira(self):
         tester = app.test_client(self)
-        response = tester.post('/feira/',json=FlaskTeste.FEIRA_OBJ)
+        response = tester.post("/feira/", json=FlaskTeste.FEIRA_OBJ)
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.content_type, "application/json")
-
 
     def test_Atualizar_feira(self):
         id = 4
         tester = app.test_client(self)
-        response = tester.put('/feira/{}'.format(id),json=FlaskTeste.FEIRA_OBJ)
+        response = tester.put("/feira/{}".format(id), json=FlaskTeste.FEIRA_OBJ)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.content_type, "application/json")
 
     def test_buscar_nova_feira(self):
         nomefeira = "Vila"
         tester = app.test_client(self)
-        response = tester.get('/feira/{}'.format(nomefeira))
+        response = tester.get("/feira/{}".format(nomefeira))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.content_type, "application/json")
 
     def test_deletar_feira(self):
         id = 5
         tester = app.test_client(self)
-        response = tester.delete('/feira/{}'.format(id))
+        response = tester.delete("/feira/{}".format(id))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.content_type, "application/json")
-
-
-
-
 
 
 if __name__ == "__main__":
