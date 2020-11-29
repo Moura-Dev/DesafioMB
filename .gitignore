@@ -4,3 +4,4 @@
 migrations
 .pytest_cache
 venv
+errorlog.txt

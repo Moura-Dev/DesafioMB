@@ -21,12 +21,12 @@ def GetFeiraDistrito(cod):
     return BuscarPorNomeFeira(cod)
 
 
-@main.route('/feira/<cod>/', methods=['DELETE'])
+@main.route('/feira/<cod>', methods=['DELETE'])
 def DeleteFeira(cod):
     return DeletarFeira(cod)
 
 
-@main.route('/feira/<cod>/', methods=['PUT', 'PATCH'])
+@main.route('/feira/<cod>', methods=['PUT', 'PATCH'])
 def AtualizarFeiraLivre(cod):
     return AtualizarFeira(cod)
 
