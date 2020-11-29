@@ -44,7 +44,7 @@ def DeletarFeira(cod):
     FeirasLivres.query.filter(FeirasLivres.id == cod).delete()
     try:
         db.session.commit()
-        return jsonify({'Message': "Feira Deletada com Sucesso!!"}), 201
+        return jsonify({'Message': "Feira Deletada com Sucesso!!"}), 200
 
     except:
         return jsonify({'message': "Erro ao Deletar feira!"}), 404
@@ -55,7 +55,7 @@ def AtualizarFeira(cod):
     try:
         query.update(request.json)
         db.session.commit()
-        return jsonify({'Message': "Feira Atualizada com Sucesso!!"}), 201
+        return jsonify({'Message': "Feira Atualizada com Sucesso!!"}), 200
 
     except:
         return jsonify({'message': "Erro ao Atualizar Feira!!"}), 404
