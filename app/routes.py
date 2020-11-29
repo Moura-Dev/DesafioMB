@@ -1,4 +1,4 @@
-from .views import BuscarFeira, BuscarPorNomeFeira, DeletarFeira, AtualizarFeira, AdicionarFeira, hello
+from .views import BuscarFeira, BuscarPorNomeFeira, DeletarFeira, AtualizarFeira, AdicionarFeira
 from flask import Blueprint, jsonify, request
 from . import db
 from .models import FeirasLivres
@@ -7,9 +7,6 @@ from .models import FeirasLivres
 main = Blueprint('main', __name__)
 
 
-@main.route('/')
-def hellowordl():
-    return hello()
 
 @main.route('/feira/')
 def GetFeira():

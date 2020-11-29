@@ -4,9 +4,6 @@ from . import db
 
 
 
-def hello():
-    return "Hello World"
-
 
 def BuscarFeira():
 
