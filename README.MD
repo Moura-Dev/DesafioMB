@@ -40,6 +40,14 @@ Method: Get
 url =  /feira/ (GET)
 
 
+# Endpoint Consultar Feira Por Nome (Listar Todas as Feiras que contem o nome no banco):
+
+Method: Get
+url =  /feira/{nomefeira} (GET)
+
+feira/Vila Maria/
+
+
 # Endpoint POST Feira :
 
 Method: POST
@@ -75,7 +83,7 @@ modelo de url = Feira
 
 Method: PUT, PATCH
 
-url = /feira/id/ (Put)
+url = /feira/{id}/ (Put)
 
 modelo de url = feira/1/
 
