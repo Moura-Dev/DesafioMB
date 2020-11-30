@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 from logging import FileHandler, WARNING
 
 db = SQLAlchemy()
@@ -15,7 +14,6 @@ def create_app():
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 
     db.init_app(app)
-    migrate = Migrate(app, db)
 
     from .routes import main
 

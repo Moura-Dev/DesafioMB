@@ -15,20 +15,16 @@ pip install -r requirements.txt
 # Exportar flask:
 Export FLASK_APP=app
 
+
+# Executando Script Para Criar Banco de Dados e Inserir Dados no Banco de Dados
+
+python3 script/rotina.py
+ 
 # Conectar e Criar Banco de Dados
 Edit app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost/api' no arquivo __init__.py com suas configuraçoes
 
 
-no terminal execute:
-flask db init
-flask db migrate
-flask db upgrade
 
-
-# Executando Script Para Inserir Dados no Banco de Dados
-
-python3 script/rotina.py
- 
 
 # Executando teste 
 python -m unittest 
@@ -37,7 +33,6 @@ python -m unittest
 #Ligando Api
 
 Execute no terminal o Comando Flask run
-
 
 
 # Endpoint Consultar Feiras (Listar todas as Feiras no banco):
