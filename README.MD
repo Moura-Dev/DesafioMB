@@ -15,15 +15,14 @@ pip install -r requirements.txt
 # Exportar flask:
 Export FLASK_APP=app
 
-
-# Executando Script Para Criar Banco de Dados e Inserir Dados no Banco de Dados
-
-python3 script/rotina.py
- 
-# Conectar e Criar Banco de Dados
+# Conectar Banco de Dados
 Edit app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost/api' no arquivo __init__.py com suas configuraçoes
 
 
+
+# Executando Script Para Criar Banco de Dados e Inserir Dados no Banco de Dados
+python3 script/rotina.py
+ 
 
 
 # Executando teste 
